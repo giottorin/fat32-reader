@@ -1,0 +1,32 @@
+def read_fat(b: bytes): # взято из документации microsoft
+    bs_jump_boot = int.from_bytes(b[0:3], byteorder='little')
+    bs_oem_name = b[3:11].decode('utf-8')
+    bpb_byts_per_sec = int.from_bytes(b[11:13], byteorder='little')
+    bpb_sec_per_clus = int.from_bytes(b[13:14], byteorder='little')
+    bpb_rsvd_sec_cnt = int.from_bytes(b[14:16], byteorder='little')
+    bpb_num_fats = int.from_bytes(b[16:17], byteorder='little')
+    bpb_root_end_cnt = int.from_bytes(b[17:19], byteorder='little')
+    bpb_tot_sec16 = int.from_bytes(b[19:21], byteorder='little')
+    bpb_media = int.from_bytes(b[21:22], byteorder='little')
+    bpb_fat_sz16 = int.from_bytes(b[22:24], byteorder='little')
+    bpb_sec_per_trk = int.from_bytes(b[24:26], byteorder='little')
+    bpb_num_heads = int.from_bytes(b[26:28], byteorder='little')
+    bpb_hidd_sec = int.from_bytes(b[28:32], byteorder='little')
+    bpb_tot_sec32 = int.from_bytes(b[32:36], byteorder='little')
+    ### fat32 structure starting at offset 36
+    bpb_fat_sz32 = int.from_bytes(b[36:40], byteorder='little')
+    bpb_ext_flags = int.from_bytes(b[40:42], byteorder='little')
+    bpb_fs_ver = int.from_bytes(b[42:44], byteorder='little')
+    bpb_root_clus = int.from_bytes(b[44:48], byteorder='little')
+    bpb_fs_info = int.from_bytes(b[48:50], byteorder='little')
+    bpb_bk_boot_sec = int.from_bytes(b[50:52], byteorder='little')
+    bpb_reserved = int.from_bytes(b[52:64], byteorder='little')
+    bs_drv_num = int.from_bytes(b[64:65], byteorder='little')
+    bs_resevedl = int.from_bytes(b[65:66], byteorder='little')
+    bs_boot_sig = int.from_bytes(b[66:67], byteorder='little')
+    bs_vol_id = int.from_bytes(b[67:71], byteorder='little')
+    bs_vol_lab = int.from_bytes(b[71:82], byteorder='little')
+    bs_fil_sys_type = b[82:90].decode('utf-8')
+    return
+
+
